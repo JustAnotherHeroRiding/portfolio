@@ -1,17 +1,10 @@
 import Image from 'next/image'
+import Sidebar from './components/sidebar/Sidebar'
 
 export default function Home() {
   return (
     <div className='bg-stone-900 mx-auto flex min-h-screen max-w-[1800px] flex-col max-lg:pb-16 lg:flex-row'>
-      <div className='flex flex-col gap-4 text-slate-100'>
-        <div className='flex flex-col items-center justify-center py-12'>
-          <span>Kristijan Kocev</span>
-          <div className='flex flex-row gap-4'>
-            <span>Skopje</span>
-            <span>Software Engineer</span>
-          </div>
-        </div>
-      </div>
+      <Sidebar />
       <div className='flex flex-col gap-8 justify-center items-center'>
         <h2>Projects</h2>
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
