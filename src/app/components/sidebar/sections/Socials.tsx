@@ -1,0 +1,21 @@
+import Github from '../../svg/Github'
+import Instagram from '../../svg/Instagram'
+import Linkedin from '../../svg/Linkedin'
+
+const Socials = () => {
+  return (
+    <div className='flex flex-row gap-4 mb-4 align-center justify-center'>
+      <a href='https://github.com/justAnotherHeroRiding/'>
+        <Github fill='#E5E9F0' />
+      </a>
+      <a href='https://www.linkedin.com/in/kristijan-kocev-69017a203/'>
+        <Linkedin fill='#E5E9F0' />
+      </a>
+      <a href='https://www.instagram.com/stpmkngsns/'>
+        <Instagram fill='#E5E9F0' />
+      </a>
+    </div>
+  )
+}
+
+export default Socials

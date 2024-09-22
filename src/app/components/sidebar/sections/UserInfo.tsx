@@ -3,7 +3,7 @@ import Location from '../../svg/Location'
 
 const UserInfo = () => {
   return (
-    <div className='flex flex-col items-center justify-center py-12'>
+    <div className='flex flex-col items-center justify-center pt-8 pb-4'>
       <span>Kristijan Kocev</span>
       <div className='flex flex-row gap-4'>
         <div className='flex flex-row gap-1'>
