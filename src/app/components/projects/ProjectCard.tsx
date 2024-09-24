@@ -3,11 +3,16 @@ import Image from 'next/image'
 import { AcquireInfo, Project } from '@/app/utils/projects'
 
 const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
+  const isProd = process.env.NODE_ENV === 'production'
+  const prefix = isProd ? '/portfolio' : ''
+  const fullImageUrl = `${prefix}${imageUrl}`
+
   const appButtons = acquireInfo.filter(info => info.type === 'appStore' || info.type === 'playStore')
   const altButtons = acquireInfo.filter(info => info.type === 'contact' || info.type === 'website')
+
   return (
     <li className='flex flex-col gap-2 border border-nord-main-border rounded-lg mx-auto justify-center items-center px-4 py-6 w-full max-w-[400px]'>
-      <Image src={imageUrl} className='rounded-[25px]' width={100} height={100} alt={`${name} Logo`} />
+      <Image src={fullImageUrl} className='rounded-[25px]' width={100} height={100} alt={`${name} Logo`} />
       <span className='text-xl font-medium'>{name}</span>
       <span className='max-w-[400px] text-center text-nord-text-secondary opacity-70'>{description}</span>
       <div className='flex flex-row gap-2'>
