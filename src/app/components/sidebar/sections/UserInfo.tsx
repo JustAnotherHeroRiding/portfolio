@@ -5,7 +5,7 @@ import Image from 'next/image'
 const UserInfo = () => {
   const isProd = process.env.NODE_ENV === 'production'
   return (
-    <div className='flex flex-col items-center justify-center pt-8 pb-4'>
+    <div className='flex flex-col items-center gap-2 justify-center pt-8 pb-4'>
       <Image
         src={isProd ? '/portfolio/images/me.png' : '/images/me.png'}
         className='rounded-full'
