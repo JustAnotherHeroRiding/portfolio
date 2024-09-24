@@ -7,10 +7,10 @@ const UserInfo = () => {
   return (
     <div className='flex flex-col items-center justify-center pt-8 pb-4'>
       <Image
-        src={isProd ? '/portfolio/images/me.jpg' : '/images/me.jpg'}
-        className='rounded-[25px]'
-        width={100}
-        height={100}
+        src={isProd ? '/portfolio/images/me.png' : '/images/me.png'}
+        className='rounded-full'
+        width={120}
+        height={120}
         alt='Rate Game Logo'
       />
       <span>Kristijan Kocev</span>
