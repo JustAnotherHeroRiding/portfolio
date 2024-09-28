@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        soehne: ['var(--font-soehne-full)', 'sans-serif'],
+        'soehne-mono': ['var(--font-soehne-mono)', 'monospace'], // Add Soehne Mono font
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
