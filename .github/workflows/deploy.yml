@@ -53,12 +53,12 @@ jobs:
 
       - name: Build with Next.js
         env:
-          FIREBASE_APIKEY: ${{ secrets.FIREBASE_APIKEY }}
-          FBASE_AUTH_DOMAIN: ${{ secrets.FBASE_AUTH_DOMAIN }}
-          FBASE_PROJECT_ID: ${{ secrets.FBASE_PROJECT_ID }}
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
-          FBASE_MESSAGING_SENDER_ID: ${{ secrets.FBASE_MESSAGING_SENDER_ID }}
-          FBASE_APP_ID: ${{ secrets.FBASE_APP_ID }}
+          FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
         run: yarn next build
 
       - name: Upload artifact
