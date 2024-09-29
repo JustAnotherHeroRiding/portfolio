@@ -7,7 +7,7 @@ export default function Home() {
     <div className='bg-nord-surface mx-auto flex min-h-screen max-w-[1800px] flex-col max-lg:pb-16 lg:flex-row'>
       <Sidebar />
       <div className='flex flex-col gap-8 items-center'>
-        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8'>
+        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8 px-8'>
           {projects.map(project => {
             return (
               <ProjectCard

@@ -6,13 +6,13 @@ const Socials = () => {
   return (
     <div className='flex flex-row gap-4 mb-4 align-center justify-center'>
       <a href='https://github.com/justAnotherHeroRiding/'>
-        <Github fill='#E5E9F0' />
+        <Github fill='#fafafa' />
       </a>
       <a href='https://www.linkedin.com/in/kristijan-kocev-69017a203/'>
-        <Linkedin fill='#E5E9F0' />
+        <Linkedin fill='#fafafa' />
       </a>
       <a href='https://www.instagram.com/stpmkngsns/'>
-        <Instagram fill='#E5E9F0' />
+        <Instagram fill='#fafafa' />
       </a>
     </div>
   )

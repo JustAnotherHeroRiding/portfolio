@@ -15,12 +15,12 @@ const UserInfo = () => {
         alt='Rate Game Logo'
       />
       <span className='text-2xl font-bold'>Kristijan Kocev</span>
-      <div className='flex flex-row gap-4'>
+      <div className='flex flex-row gap-4 justify-center items-center'>
         <div className='flex flex-row gap-1'>
           <Location fill='#94a3b8' size={24} />
           <span className='text-lg font-medium'>Skopje</span>
         </div>
-        <div className='flex flex-row gap-1'>
+        <div className='flex flex-row gap-1 justify-center items-center'>
           <Engineer fill='#94a3b8' size={24} />
           <span className='text-lg font-medium font-soehne-mono'>Software Engineer</span>
         </div>
