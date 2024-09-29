@@ -1,6 +1,6 @@
 import { SVGProps } from '@/app/utils/SVGProps'
 
-const Github = ({ size = 24, fill = '#5f6368' }: SVGProps) => {
+const Github = ({ size = 24, fill = '#fafafa' }: SVGProps) => {
   return (
     <svg
       role='img'
