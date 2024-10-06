@@ -1,6 +1,11 @@
+import { SVGProps } from '@/app/utils/SVGProps'
+import Github from '../components/svg/Github';
+
 export interface AcquireInfo {
     type: 'appStore' | 'playStore' | 'website' | 'contact';
     link?: string; // Optional link for website or app stores
+    logo?: React.FC<SVGProps>;
+
 }
 
 export interface Project {
@@ -8,6 +13,7 @@ export interface Project {
     description: string;
     imageUrl: string;
     acquireInfo: AcquireInfo[];
+
 }
 export const projects: Project[] = [
     {
@@ -35,4 +41,16 @@ export const projects: Project[] = [
             },
         ],
     },
+    {
+        name: 'CherryPick',
+        description:'Download directories or files from github without cloning the repository.',
+        imageUrl:'/images/cherryPickLogo.jpg',
+        acquireInfo: [
+        {
+            type:'website',
+            link:'https://github.com/JustAnotherHeroRiding/CherryPick',
+            logo:Github
+        }
+    ]
+    }
 ]

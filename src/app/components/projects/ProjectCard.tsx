@@ -15,14 +15,20 @@ const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
 
   return (
     <li className='flex flex-col gap-2 border border-nord-main-border rounded-lg mx-auto justify-center items-center px-4 py-6 w-full'>
-      <Image src={fullImageUrl} className='rounded-[25px]' width={100} height={100} alt={`${name} Logo`} />
+      <Image
+        src={fullImageUrl}
+        className='rounded-[25px] bg-nord-accent-1'
+        width={100}
+        height={100}
+        alt={`${name} Logo`}
+      />
       <span className='text-xl font-medium'>{name}</span>
       <span className='max-w-[350px] text-center text-nord-text-secondary opacity-70'>{description}</span>
       <div className='flex flex-row gap-2 mt-auto'>
         {appButtons?.map((info: AcquireInfo, index: number) => (
           <div key={index} className='mt-2'>
             {info.type === 'appStore' && info.link && (
-              <Link href={info.link} className='text-blue-500'>
+              <Link href={info.link} className='text-blue-500 hover:opacity-70'>
                 <div
                   title='Get on the App Store'
                   className='flex py-2 px-3  bg-nord-text-primary text-white rounded-xl items-center justify-center'
@@ -32,7 +38,7 @@ const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
               </Link>
             )}
             {info.type === 'playStore' && info.link && (
-              <Link href={info.link} className='text-blue-500'>
+              <Link href={info.link} className='text-blue-500 hover:opacity-70'>
                 <div
                   title='Get on Google Play'
                   className='flex py-2 px-3  bg-nord-text-primary text-white rounded-xl items-center justify-center'
@@ -48,12 +54,21 @@ const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
         {altButtons?.map((info: AcquireInfo, index: number) => (
           <div key={index} className='mt-2'>
             {info.type === 'website' && info.link && (
-              <Link href={info.link} className='text-blue-500'>
-                Visit Website
+              <Link
+                href={info.link}
+                className='text-blue-500 hover:opacity-70 flex flex-row items-center justify-center gap-2'
+              >
+                <div
+                  title='Email me for the app'
+                  className='flex py-2 px-3 gap-2 bg-nord-text-primary text-white rounded-xl items-center justify-center'
+                >
+                  {info.logo ? <info.logo size={24} fill='#2E3440' /> : null}
+                  <span className='font-bold text-nord-surface'>Contact Me</span>
+                </div>
               </Link>
             )}
             {info.type === 'contact' && (
-              <Link href='mailto:kristijankocev1234@gmail.com' className='text-blue-500'>
+              <Link href='mailto:kristijankocev1234@gmail.com' className='text-blue-500 hover:opacity-70'>
                 <div
                   title='Email me for the app'
                   className='flex py-2 px-3 gap-2 bg-nord-text-primary text-white rounded-xl items-center justify-center'
