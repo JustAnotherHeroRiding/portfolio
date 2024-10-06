@@ -47,7 +47,7 @@ const ContactMe = () => {
         />
         <button
           type='submit'
-          className='border-1 font-bold border-nord-text-primary py-2 px-4 rounded-r-md bg-nord-text-primary text-nord-surface'
+          className='border-1 hover:opacity-70 font-bold border-nord-text-primary py-2 px-4 rounded-r-md bg-nord-text-primary text-nord-surface'
         >
           Send
         </button>
