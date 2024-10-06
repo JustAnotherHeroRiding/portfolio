@@ -63,7 +63,7 @@ const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
                   className='flex py-2 px-3 gap-2 bg-nord-text-primary text-white rounded-xl items-center justify-center'
                 >
                   {info.logo ? <info.logo size={24} fill='#2E3440' /> : null}
-                  <span className='font-bold text-nord-surface'>Contact Me</span>
+                  <span className='font-bold text-nord-surface'>Check out</span>
                 </div>
               </Link>
             )}
