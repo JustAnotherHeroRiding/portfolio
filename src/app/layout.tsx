@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
+import './prism-nord.css'
 
 export const metadata: Metadata = {
   title: 'Kristijan Kocev',
@@ -77,7 +78,7 @@ export default function RootLayout({
     <html suppressHydrationWarning lang='en'>
       <body className={`${SoehneFull.variable} ${SoehneMono.variable} antialiased font-soehne`}>
         <Toaster position='top-center' reverseOrder={false} />
-        <main className='min-h-screen text-nord-text-primary'>{children}</main>
+        <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
       </body>
     </html>
   )
