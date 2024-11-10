@@ -2,9 +2,11 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
-import html from 'remark-html'
+import remarkRehype from 'remark-rehype';
 import rehypePrism from 'rehype-prism-plus'
-import { myWritings } from '@/app/utils/writings'
+import { myWritings } from '@/app/utils/allWritings'
+import rehypeStringify from 'rehype-stringify';
+import remarkHtml from 'remark-html'
 
 export async function getWritingContent(slug: string) {
   const writing = myWritings.find((w) => w.slug === slug)
@@ -15,9 +17,11 @@ export async function getWritingContent(slug: string) {
   const { content } = matter(fileContents)
 
   const processedContent = await remark()
-    .use(html)
-    .use(rehypePrism) 
-    .process(content)
+  .use(remarkHtml)
+  .use(remarkRehype)
+  .use(rehypePrism)
+  .use(rehypeStringify)
+  .process(content);
 
   return {
     title: writing.title,

@@ -44,8 +44,10 @@ const RAW_RUNTIME_STATE =
           ["react-dom", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:18.3.1"],\
           ["react-hot-toast", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.4.1"],\
           ["rehype-prism-plus", "npm:2.0.0"],\
+          ["rehype-stringify", "npm:10.0.1"],\
           ["remark", "npm:15.0.1"],\
           ["remark-html", "npm:16.0.1"],\
+          ["remark-rehype", "npm:11.1.1"],\
           ["tailwindcss", "npm:3.4.11"],\
           ["typescript", "patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"]\
         ],\
@@ -6020,8 +6022,10 @@ const RAW_RUNTIME_STATE =
           ["react-dom", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:18.3.1"],\
           ["react-hot-toast", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.4.1"],\
           ["rehype-prism-plus", "npm:2.0.0"],\
+          ["rehype-stringify", "npm:10.0.1"],\
           ["remark", "npm:15.0.1"],\
           ["remark-html", "npm:16.0.1"],\
+          ["remark-rehype", "npm:11.1.1"],\
           ["tailwindcss", "npm:3.4.11"],\
           ["typescript", "patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"]\
         ],\
@@ -6444,6 +6448,18 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["rehype-stringify", [\
+      ["npm:10.0.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/rehype-stringify-npm-10.0.1-cc1170acb2-10c0.zip/node_modules/rehype-stringify/",\
+        "packageDependencies": [\
+          ["rehype-stringify", "npm:10.0.1"],\
+          ["@types/hast", "npm:3.0.4"],\
+          ["hast-util-to-html", "npm:9.0.3"],\
+          ["unified", "npm:11.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["remark", [\
       ["npm:15.0.1", {\
         "packageLocation": "../../../.yarn/berry/cache/remark-npm-15.0.1-0f67091876-10c0.zip/node_modules/remark/",\
@@ -6480,6 +6496,20 @@ const RAW_RUNTIME_STATE =
           ["mdast-util-from-markdown", "npm:2.0.2"],\
           ["micromark-util-types", "npm:2.0.0"],\
           ["unified", "npm:11.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["remark-rehype", [\
+      ["npm:11.1.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/remark-rehype-npm-11.1.1-b682bb669b-10c0.zip/node_modules/remark-rehype/",\
+        "packageDependencies": [\
+          ["remark-rehype", "npm:11.1.1"],\
+          ["@types/hast", "npm:3.0.4"],\
+          ["@types/mdast", "npm:4.0.4"],\
+          ["mdast-util-to-hast", "npm:13.2.0"],\
+          ["unified", "npm:11.0.5"],\
+          ["vfile", "npm:6.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
