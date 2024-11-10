@@ -1,6 +1,11 @@
 import { getWritingContent } from '@/app/utils/server-functions/getWritingContent'
 import { PageProps } from '../../../../.next/types/app/layout'
 import Link from 'next/link'
+import { myWritings } from '@/app/utils/allWritings'
+
+export async function generateStaticParams() {
+  return myWritings.map(writing => ({ slug: writing.slug }))
+}
 
 export default async function Writing({ params }: PageProps) {
   const { slug } = params
