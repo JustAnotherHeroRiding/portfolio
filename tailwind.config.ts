@@ -10,12 +10,12 @@ const config: Config = {
     extend: {
       fontFamily: {
         soehne: ['var(--font-soehne-full)', 'sans-serif'],
-        'soehne-mono': ['var(--font-soehne-mono)', 'monospace'], // Add Soehne Mono font
+        'soehne-mono': ['var(--font-soehne-mono)', 'monospace'],
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-         'nord': {
+        nord: {
           surface: '#2E3440',
           'on-surface': '#D8DEE9',
           'main-border': '#4C566A',
@@ -27,15 +27,70 @@ const config: Config = {
           'highlight-1': '#8FBCBB',
           'highlight-2': '#88C0D0',
           'highlight-3': '#81A1C1',
-          'error': '#BF616A',
-          'warning': '#D08770',
-          'info': '#EBCB8B',
-          'success': '#A3BE8C',
-          'muted': '#B48EAD',
+          error: '#BF616A',
+          warning: '#D08770',
+          info: '#EBCB8B',
+          success: '#A3BE8C',
+          muted: '#B48EAD',
         },
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#E5E9F0',
+            a: {
+              color: '#88C0D0',
+              '&:hover': {
+                color: '#81A1C1',
+              },
+            },
+            h1: {
+              color: '#E5E9F0',
+            },
+            h2: {
+              color: '#E5E9F0',
+            },
+            h3: {
+              color: '#E5E9F0',
+            },
+            h4: {
+              color: '#E5E9F0',
+            },
+            p: {
+              color: '#E5E9F0',
+            },
+            code: {
+              color: '#ECEFF4',
+              backgroundColor: '#3B4252',
+              padding: '0.2em 0.4em',
+              borderRadius: '0.25rem',
+            },
+            pre: {
+              color: '#E5E9F0',
+              backgroundColor: '#3B4252',
+              padding: '1em',
+              borderRadius: '0.25rem',
+              overflowX: 'auto',
+            },
+            'pre code': {
+              color: '#ECEFF4',
+              backgroundColor: 'transparent',
+              padding: 0,
+              borderRadius: 0,
+            },
+            blockquote: {
+              color: '#ECEFF4',
+              borderLeftColor: '#88C0D0',
+            },
+            hr: {
+              borderColor: '#4C566A',
+            },
+          },
         },
+      }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
+
 export default config;

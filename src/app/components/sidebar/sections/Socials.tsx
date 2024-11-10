@@ -5,13 +5,13 @@ import Linkedin from '../../svg/Linkedin'
 const Socials = () => {
   return (
     <div className='flex flex-row gap-4 mb-4 align-center justify-center'>
-      <a href='https://github.com/justAnotherHeroRiding/'>
+      <a className='hover:opacity-70' href='https://github.com/justAnotherHeroRiding/'>
         <Github fill='#fafafa' />
       </a>
-      <a href='https://www.linkedin.com/in/kristijan-kocev-69017a203/'>
+      <a className='hover:opacity-70' href='https://www.linkedin.com/in/kristijan-kocev-69017a203/'>
         <Linkedin fill='#fafafa' />
       </a>
-      <a href='https://www.instagram.com/stpmkngsns/'>
+      <a className='hover:opacity-70' href='https://www.instagram.com/stpmkngsns/'>
         <Instagram fill='#fafafa' />
       </a>
     </div>

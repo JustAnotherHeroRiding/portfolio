@@ -22,7 +22,7 @@ const UserInfo = () => {
         </div>
         <div className='flex flex-row gap-1 justify-center items-center'>
           <Engineer fill='#94a3b8' size={24} />
-          <span className='text-lg font-medium font-soehne-mono'>Software Engineer</span>
+          <span className='text-lg font-medium font-soehne-mono'>Product Engineer</span>
         </div>
       </div>
     </div>
