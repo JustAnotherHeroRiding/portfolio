@@ -68,7 +68,7 @@ return { ...query };
 
 The fetch function is the same one as before, a simple get request to our REST API that returns the games with the provided filters. The main character in this transformation is the `useQueryFocusAware()`, a custom hook checking if the screen is currently focused. The query will never fire if we are not viewing that screen currently, fixing our league swapping problem.
 
-Here is hook itself:
+Here is the hook itself:
 
 ```typescript
 import { useFocusEffect } from '@react-navigation/native';
