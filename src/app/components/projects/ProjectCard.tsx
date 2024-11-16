@@ -5,7 +5,7 @@ import AppStore from '../svg/AppStore'
 import GooglePlay from '../svg/GooglePlay'
 import Mail from '../svg/Mail'
 
-const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
+const ProjectCard = ({ name, description, imageUrl, acquireInfo, stack }: Project) => {
   const isProd = process.env.NODE_ENV === 'production'
   const prefix = isProd ? '/portfolio' : ''
   const fullImageUrl = `${prefix}${imageUrl}`
@@ -80,6 +80,15 @@ const ProjectCard = ({ name, description, imageUrl, acquireInfo }: Project) => {
             )}
           </div>
         ))}
+      </div>
+      <div className='flex flex-row gap-2'>
+        {stack.map(s => {
+          return (
+            <Link href={s.docs} className='p-1 hover:opacity-70 bg-nord-accent-1 rounded-full'>
+              <img key={`${s.name}-${name}`} src={s.logoUrl} width={42} height={42} alt={`${s.name} Logo`} />
+            </Link>
+          )
+        })}
       </div>
     </li>
   )

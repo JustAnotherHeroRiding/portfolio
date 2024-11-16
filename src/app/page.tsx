@@ -16,6 +16,7 @@ export default function Home() {
                 description={project.description}
                 imageUrl={project.imageUrl}
                 acquireInfo={project.acquireInfo}
+                stack={project.stack}
               />
             )
           })}
