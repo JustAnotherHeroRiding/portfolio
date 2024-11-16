@@ -18,9 +18,9 @@ export default async function Writing({ params }: PageProps) {
       <Link href={'/'} className='text-blue-500 hover:opacity-70'>
         <div>Go Back</div>
       </Link>
-      <article className='prose prose-lg text-nord-text-primary flex flex-col px-4 md:px-16 py-12 items-center bg-nord-surface mx-auto'>
+      <article className='prose prose-lg text-nord-text-primary flex flex-col px-4 md:px-16 py-12 items-center bg-nord-surface mx-auto w-full'>
         <div className='flex flex-col mb-4'>
-          <h1 className='text-3xl font-bold text-center mb-0'>{post.title}</h1>
+          <h1 className=''>{post.title}</h1>
           <p className='text-center opacity-70 my-0'>{post.createdAt}</p>
         </div>
         <div className='w-full overflow-hidden break-words' dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
