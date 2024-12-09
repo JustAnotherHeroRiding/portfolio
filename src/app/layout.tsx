@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: 'https://justanotherheroriding.github.io/portfolio/images/me.png', // Replace with your actual URL
     images: [
       {
-        url: 'https://justanotherheroriding.github.io/portfolio/images/me.png/', // Replace with the actual image URL
+        url: 'https://justanotherheroriding.github.io/portfolio/images/me.png', // Replace with the actual image URL
         width: 800,
         height: 600,
         alt: 'Kristijan Kocev Portfolio',
