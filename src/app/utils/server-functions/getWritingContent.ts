@@ -6,7 +6,7 @@ import remarkRehype from 'remark-rehype';
 import rehypePrism from 'rehype-prism-plus'
 import { myWritings } from '@/app/utils/allWritings'
 import rehypeStringify from 'rehype-stringify';
-import remarkHtml from 'remark-html'
+import remarkHtml from 'remark-html';
 
 export async function getWritingContent(slug: string) {
   const writing = myWritings.find((w) => w.slug === slug)
@@ -17,10 +17,10 @@ export async function getWritingContent(slug: string) {
   const { content } = matter(fileContents)
 
   const processedContent = await remark()
-  .use(remarkHtml)
-  .use(remarkRehype)
+  .use(remarkHtml, { sanitize: false }) 
+  .use(remarkRehype, { allowDangerousHtml: true }) // Allow raw HTML during Markdown-to-HAST conversion
   .use(rehypePrism)
-  .use(rehypeStringify)
+  .use(rehypeStringify, { allowDangerousHtml: true }) // Preserve raw HTML in the final string
   .process(content);
 
   return {
