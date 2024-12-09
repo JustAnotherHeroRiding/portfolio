@@ -7,7 +7,7 @@ export const Writings = () => {
       <h1 className='text-2xl font-bold'>Writings</h1>
       <div className='flex flex-col items-start align-center'>
         {myWritings.map(blog => (
-          <div key={blog.id}>
+          <div key={blog.id} className='w-full'>
             <Link
               className='flex flex-row w-full justify-between gap-2 hover:opacity-70'
               href={`/writing/${blog.slug}`}
