@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: 'Kristijan Kocev',
     description:
       'Explore the portfolio of Kristijan Kocev, a skilled product engineer specializing in React Native and Next.js.',
-    url: 'https://justanotherheroriding.github.io/portfolio/', // Replace with your actual URL
+    url: 'https://justanotherheroriding.github.io/portfolio/images/me.png',
     images: [
       {
         url: 'https://justanotherheroriding.github.io/portfolio/images/me.png',
