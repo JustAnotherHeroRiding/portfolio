@@ -8,7 +8,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Writing({ params }: PageProps) {
-  const { slug } = params
+  const { slug } = await params
   const post = await getWritingContent(slug)
 
   if (!post) return <p>Post not found</p>

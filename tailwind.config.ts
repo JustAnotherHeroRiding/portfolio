@@ -65,6 +65,9 @@ const config: Config = {
               padding: '0.2em 0.4em',
               borderRadius: '0.25rem',
             },
+            strong: {
+              color:"#E5E9F0"
+            },
             pre: {
               color: '#E5E9F0',
               backgroundColor: '#3B4252',

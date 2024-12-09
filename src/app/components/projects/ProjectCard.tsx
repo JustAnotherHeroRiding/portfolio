@@ -84,8 +84,12 @@ const ProjectCard = ({ name, description, imageUrl, acquireInfo, stack }: Projec
       <div className='flex flex-row gap-2'>
         {stack.map(s => {
           return (
-            <Link href={s.docs} className='p-1 hover:opacity-70 bg-nord-accent-1 rounded-full'>
-              <img key={`${s.name}-${name}`} src={s.logoUrl} width={42} height={42} alt={`${s.name} Logo`} />
+            <Link
+              key={`${s.name}-${name}`}
+              href={s.docs}
+              className='p-1 hover:opacity-70 bg-nord-accent-1 rounded-full'
+            >
+              <img src={s.logoUrl} width={42} height={42} alt={`${s.name} Logo`} />
             </Link>
           )
         })}
