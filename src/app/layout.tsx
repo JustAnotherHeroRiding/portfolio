@@ -7,12 +7,12 @@ import './prism-nord.css'
 export const metadata: Metadata = {
   title: 'Kristijan Kocev',
   description: 'Everything you need to know about Kristijan Kocev(me)',
-  keywords: 'Kristijan Kocev, software engineer, portfolio, developer, web development, React Native, Next.js',
+  keywords: 'Kristijan Kocev, product engineer, portfolio, developer, web development, React Native, Next.js',
   openGraph: {
     title: 'Kristijan Kocev',
     description:
-      'Explore the portfolio of Kristijan Kocev, a skilled software engineer specializing in React Native and Next.js.',
-    url: 'https://justanotherheroriding.github.io/portfolio/', // Replace with your actual URL
+      'Explore the portfolio of Kristijan Kocev, a skilled product engineer specializing in React Native and Next.js.',
+    url: 'https://justanotherheroriding.github.io/portfolio/images/me.png', // Replace with your actual URL
     images: [
       {
         url: 'https://justanotherheroriding.github.io/portfolio/images/me.png/', // Replace with the actual image URL
