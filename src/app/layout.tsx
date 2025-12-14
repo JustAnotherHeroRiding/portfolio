@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import './prism-nord.css'
-import { PostHogProvider } from './providers/PostHogProvider'
+import posthog from 'posthog-js'
 
 export const metadata: Metadata = {
   title: 'Kristijan Kocev',
@@ -75,16 +75,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const posthogKey =
+    process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_KEY : process.env.POSTHOG_KEY
+  const posthogHost =
+    process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_HOST : process.env.POSTHOG_HOST
+  console.log('posthogKey', posthogKey)
+  console.log('posthogHost', posthogHost)
+
+  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    defaults: '2025-11-30',
+    person_profiles: 'always',
+  })
   return (
     <html suppressHydrationWarning lang='en'>
       <body
         className={`${SoehneFull.variable} ${SoehneMono.variable} antialiased font-soehne`}
         suppressHydrationWarning
       >
-        <PostHogProvider>
-          <Toaster position='top-center' reverseOrder={false} />
-          <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
-        </PostHogProvider>
+        <Toaster position='top-center' reverseOrder={false} />
+        <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
       </body>
     </html>
   )
