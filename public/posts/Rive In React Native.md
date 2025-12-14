@@ -44,14 +44,14 @@ The performance promises of the Rive runtime delivered, and when compared to our
 replicating the same animation with reanimated, there were almost no frames dropped compared to the JS or UI fps tanking
 to 0 with the previous two approaches, especially on older androids.
 
-<video width="100%" height="400" controls>
+<video width="100%" height="400px" controls>
 <source src="https://firebasestorage.googleapis.com/v0/b/rate-game-dev.appspot.com/o/data%2FScreenRecording_12-14-2025%2017-09-11_1.MP4?alt=media&token=1d617b13-8194-4919-894f-509993f0d4f5" type="video/mp4">
 Your browser does not support the video tag. </video> Previously the color of the semicircle only changed when the value
 hit 3 breakpoints, to red, yellow or green which resulted in the semicircle circle having to rerender which tanked the
 framerate on almost any android phone. Using Rive has resulted in my old Samsung A53 having no issues at all, which is
 my biggest personal win to come out of Rive, as it only gets worse from here.
 
-<video width="100%" height="400" controls>
+<video width="100%" height="400px" controls>
 <source src="https://firebasestorage.googleapis.com/v0/b/rate-game-dev.appspot.com/o/data%2FScreenRecording_12-14-2025%2017-14-54_1.MP4?alt=media&token=63c05240-ace8-401a-8e3c-451ef31279b1" type="video/mp4">
 Your browser does not support the video tag. </video>
 
@@ -101,7 +101,7 @@ The other animation was meant as a replacement to the simple toast message showi
 successfully rate a game, showing you how much RGS you gained (Rate Game Score, our in-app system of assigning value to
 user activity with higher quality submissions getting more score)
 
-<video src="https://firebasestorage.googleapis.com/v0/b/rate-game-dev.appspot.com/o/data%2FScreen%20Recording%202025-12-14%20at%2017.46.16.mov?alt=media&token=6349bf98-a4c5-4302-926d-693116641bc1"
+<video src="https://firebasestorage.googleapis.com/v0/b/rate-game-dev.appspot.com/o/data%2FScreen%20Recording%202025-12-14%20at%2017.46.16.mov?alt=media&token=6349bf98-a4c5-4302-926d-693116641bc1" type="video/mp4"
 controls /> The feedback from Nick, RateGame's founder was that he felt as if this animation was part of a pirated
 version of our app and someone tacked this on top. Almost a week after deciding to scrap it, I tend to agree as it did
 not fit in with the rest of our look. I replaced this by bringing back the toast message, added some movement to it by
