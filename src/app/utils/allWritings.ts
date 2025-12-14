@@ -21,6 +21,6 @@ export const myWritings = [
     title: 'Rive in React Native',
     subtitle: 'The Good, the Bad and the Janky',
     createdAt: 'December 14, 2025',
-    path: 'Rive in React Native',
+    path: 'Rive In React Native',
   },
 ]
