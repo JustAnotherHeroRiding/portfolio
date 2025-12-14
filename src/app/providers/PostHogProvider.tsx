@@ -10,6 +10,8 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
   const posthogHost =
     process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_HOST : process.env.POSTHOG_HOST
 
+  console.log('posthogKey', posthogKey)
+  console.log('posthogHost', posthogHost)
   useEffect(() => {
     if (!posthogKey) return
 
