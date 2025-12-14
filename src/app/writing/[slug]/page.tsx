@@ -1,14 +1,57 @@
 import { getWritingContent } from '@/app/utils/server-functions/getWritingContent'
-import { PageProps } from '../../../../.next/types/app/layout'
 import Link from 'next/link'
 import { myWritings } from '@/app/utils/allWritings'
+import { Metadata } from 'next'
 
 export async function generateStaticParams() {
   return myWritings.map(writing => ({ slug: writing.slug }))
 }
 
-export default async function Writing({ params }: PageProps) {
-  const { slug } = await params
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const { slug } = params
+  const post = await getWritingContent(slug)
+
+  const siteUrl = 'https://justanotherheroriding.github.io/portfolio'
+  const fallbackTitle = 'Kristijan Kocev'
+  const fallbackDescription = 'Everything you need to know about Kristijan Kocev(me)'
+
+  const title = post?.title ? `${post.title}` : fallbackTitle
+  const description = post?.contentHtml.slice(0, 160) + '...' || fallbackDescription
+  const canonicalPath = `/writing/${slug}`
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalPath,
+      type: 'article',
+      siteName: fallbackTitle,
+      images: [
+        {
+          url: '/images/me.png',
+          width: 800,
+          height: 600,
+          alt: fallbackTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/me.png'],
+    },
+  }
+}
+
+export default async function Writing({ params }: { params: { slug: string } }) {
+  const { slug } = params
   const post = await getWritingContent(slug)
 
   if (!post) return <p>Post not found</p>
