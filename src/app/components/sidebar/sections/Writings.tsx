@@ -39,8 +39,8 @@ export const Writings = () => {
               </div>
 
               {/* Arrow indicator */}
-              <div className='absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300'>
-                <svg className='w-5 h-5 text-nord-highlight-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+              <div className='absolute bg-nord-surface rounded-full p-1 right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300'>
+                <svg className='w-5 h-5  text-nord-highlight-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                   <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
                 </svg>
               </div>
