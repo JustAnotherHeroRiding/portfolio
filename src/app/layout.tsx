@@ -79,6 +79,7 @@ export default function RootLayout({
     api_host: 'https://us.i.posthog.com',
     defaults: '2025-11-30',
     person_profiles: 'always',
+    autocapture: true,
   })
   return (
     <html suppressHydrationWarning lang='en'>
