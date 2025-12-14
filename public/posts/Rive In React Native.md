@@ -91,7 +91,7 @@ One of them was a like animation that just wouldn't work reliably. As we all kno
 active and inactive. A user could have already liked that post or has not. The animation needs to be able to start as
 active, or inactive and it needs to reliably switch between these two states.
 
-After a few days of testing and way too much time trying all the hacks in my bag of trick, I still kept getting bug
+After a few days of testing and way too much time trying all the hacks in my bag of tricks, I still kept getting bug
 reports that a post that was already liked showed the animation in it's inactive state.
 
 Here is the moment when I decided to call it quits and implement a custom reanimated based animation instead.
