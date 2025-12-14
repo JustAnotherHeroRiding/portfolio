@@ -5,7 +5,7 @@ import { Writings } from './sections/Writings'
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col gap-4 text-slate-100 lg:px-12'>
+    <div className='flex flex-col gap-6 text-slate-100 py-4 lg:py-8'>
       <UserInfo />
       <Writings />
       <ContactMe />

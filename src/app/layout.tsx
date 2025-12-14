@@ -76,7 +76,10 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <body className={`${SoehneFull.variable} ${SoehneMono.variable} antialiased font-soehne`}>
+      <body
+        className={`${SoehneFull.variable} ${SoehneMono.variable} antialiased font-soehne`}
+        suppressHydrationWarning
+      >
         <Toaster position='top-center' reverseOrder={false} />
         <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
       </body>
