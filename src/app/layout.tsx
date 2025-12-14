@@ -75,15 +75,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const posthogKey =
-    process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_KEY : process.env.POSTHOG_KEY
-  const posthogHost =
-    process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_HOST : process.env.POSTHOG_HOST
-  console.log('posthogKey', posthogKey)
-  console.log('posthogHost', posthogHost)
-
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+  posthog.init('phc_2ptcBqH8DDyTBtOBjxHNVnkI19I2VTaN2gtAYyg8Qf', {
+    api_host: 'https://us.i.posthog.com',
     defaults: '2025-11-30',
     person_profiles: 'always',
   })
