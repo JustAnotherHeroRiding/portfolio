@@ -1,7 +1,19 @@
 /** @type {import('next').NextConfig} */
-import { configDotenv } from 'dotenv'
+import { config as dotenvConfig } from 'dotenv'
 
-configDotenv()
+/**
+ * Load env files early so `process.env.*` is populated when this config
+ * is evaluated.
+ *
+ * Next.js normally loads `.env*` automatically, but since this config reads
+ * from `process.env` (via `env:` below), we ensure the right file is loaded
+ * for the current NODE_ENV as well.
+ */
+const nodeEnv = process.env.NODE_ENV || 'development'
+dotenvConfig({ path: `.env.${nodeEnv}.local` })
+dotenvConfig({ path: `.env.${nodeEnv}` })
+dotenvConfig({ path: '.env.local' })
+dotenvConfig({ path: '.env' })
 
 const nextConfig = {
   env: {
@@ -11,6 +23,8 @@ const nextConfig = {
     FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
     FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+    POSTHOG_KEY: process.env.POSTHOG_KEY,
+    POSTHOG_HOST: process.env.POSTHOG_HOST,
   },
   /**
    * Enable static exports for the App Router.

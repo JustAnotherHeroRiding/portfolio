@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import './prism-nord.css'
+import { PostHogProvider } from './providers/PostHogProvider'
 
 export const metadata: Metadata = {
   title: 'Kristijan Kocev',
@@ -80,8 +81,10 @@ export default function RootLayout({
         className={`${SoehneFull.variable} ${SoehneMono.variable} antialiased font-soehne`}
         suppressHydrationWarning
       >
-        <Toaster position='top-center' reverseOrder={false} />
-        <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
+        <PostHogProvider>
+          <Toaster position='top-center' reverseOrder={false} />
+          <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
+        </PostHogProvider>
       </body>
     </html>
   )

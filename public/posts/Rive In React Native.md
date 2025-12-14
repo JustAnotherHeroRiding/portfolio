@@ -1,4 +1,4 @@
-## The good, the bad and Janky
+## The good, the Bad and the Janky
 
 Another December rolls around, bringing to us as always the joys of a long running tradition. I am obviously talking
 about spotify wrapped, which seems to still be ahead of the curve compared to the many other apps that want to imitate

@@ -2,11 +2,15 @@ import Sidebar from './components/sidebar/Sidebar'
 import ProjectCard from './components/projects/ProjectCard'
 import FeaturedProjectCard from './components/projects/FeaturedProjectCard'
 import { projects } from './utils/projects'
+import posthog from 'posthog-js'
 
 export default function Home() {
   const featuredProject = projects.find(p => p.featured)
   const otherProjects = projects.filter(p => !p.featured)
 
+  posthog.capture('page_view', {
+    page: 'home',
+  })
   return (
     <div className='bg-nord-surface mx-auto flex min-h-screen max-w-[1800px] flex-col lg:flex-row'>
       {/* Sidebar - sticky on desktop */}
