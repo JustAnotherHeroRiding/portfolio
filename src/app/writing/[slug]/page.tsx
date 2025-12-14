@@ -2,13 +2,14 @@ import { getWritingContent } from '@/app/utils/server-functions/getWritingConten
 import Link from 'next/link'
 import { myWritings } from '@/app/utils/allWritings'
 import { Metadata } from 'next'
+import { PageProps } from '../../../../.next/types/app/layout'
 
 export async function generateStaticParams() {
   return myWritings.map(writing => ({ slug: writing.slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { slug } = params
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = (await params) as { slug: string }
   const post = await getWritingContent(slug)
 
   const siteUrl = 'https://justanotherheroriding.github.io/portfolio'
@@ -50,8 +51,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function Writing({ params }: { params: { slug: string } }) {
-  const { slug } = params
+export default async function Writing({ params }: PageProps) {
+  const { slug } = (await params) as { slug: string }
   const post = await getWritingContent(slug)
 
   if (!post) return <p>Post not found</p>

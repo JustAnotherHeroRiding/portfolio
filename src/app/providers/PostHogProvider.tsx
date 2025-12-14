@@ -6,9 +6,11 @@ import { PostHogProvider as PHProvider } from 'posthog-js/react'
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   const posthogKey =
-    process.env.NODE_ENV === 'production' ? process.env.POSTHOG_KEY : process.env.NEXT_PUBLIC_POSTHOG_KEY
+    process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_KEY : process.env.POSTHOG_KEY
   const posthogHost =
-    process.env.NODE_ENV === 'production' ? process.env.POSTHOG_HOST : process.env.NEXT_PUBLIC_POSTHOG_HOST
+    process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_HOST : process.env.POSTHOG_HOST
+
+  console.log({ hasKey: Boolean(posthogKey), host: posthogHost })
 
   useEffect(() => {
     if (!posthogKey) return
