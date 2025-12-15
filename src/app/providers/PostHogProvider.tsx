@@ -8,10 +8,6 @@ import SuspendedPostHogPageView from '../components/PostHogPageView'
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   const posthogKey =
     process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_POSTHOG_KEY : process.env.POSTHOG_KEY
-  console.log('posthogKey', posthogKey)
-  console.log('process.env.POSTHOG_KEY', process.env.POSTHOG_KEY)
-  console.log('public next.config.mjs', process.env.NEXT_PUBLIC_POSTHOG_KEY)
-  console.log('isEqual', posthogKey === process.env.POSTHOG_KEY)
   useEffect(() => {
     posthog.init('phc_2ptcBqH8DDyTBtOBjxHNVnkI19I2VTaN2gtAYyg8Qf', {
       api_host: 'https://us.i.posthog.com',
