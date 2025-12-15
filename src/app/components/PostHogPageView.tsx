@@ -18,6 +18,7 @@ function PostHogPageView(): null {
         url = url + `?${searchParams.toString()}`
       }
 
+      console.log('tracking pageview', url)
       posthog.capture('$pageview', { $current_url: url })
     }
   }, [pathname, searchParams, posthog])
