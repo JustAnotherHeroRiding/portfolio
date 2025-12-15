@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import './prism-nord.css'
-import posthog from 'posthog-js'
+import { PostHogProvider } from './providers/PostHogProvider'
 
 export const metadata: Metadata = {
   title: 'Kristijan Kocev',
@@ -75,20 +75,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  posthog.init('phc_2ptcBqH8DDyTBtOBjxHNVnkI19I2VTaN2gtAYyg8Qf', {
-    api_host: 'https://us.i.posthog.com',
-    defaults: '2025-11-30',
-    person_profiles: 'always',
-    autocapture: true,
-  })
   return (
     <html suppressHydrationWarning lang='en'>
       <body
         className={`${SoehneFull.variable} ${SoehneMono.variable} antialiased font-soehne`}
         suppressHydrationWarning
       >
-        <Toaster position='top-center' reverseOrder={false} />
-        <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
+        <PostHogProvider>
+          <Toaster position='top-center' reverseOrder={false} />
+          <main className='min-h-screen text-nord-text-primary bg-nord-surface'>{children}</main>
+        </PostHogProvider>
       </body>
     </html>
   )

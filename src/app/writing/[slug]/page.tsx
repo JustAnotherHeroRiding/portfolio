@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { myWritings } from '@/app/utils/allWritings'
 import { Metadata } from 'next'
 import { PageProps } from '../../../../.next/types/app/layout'
-import posthog from 'posthog-js'
 
 export async function generateStaticParams() {
   return myWritings.map(writing => ({ slug: writing.slug }))
@@ -55,9 +54,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function Writing({ params }: PageProps) {
   const { slug } = (await params) as { slug: string }
   const post = await getWritingContent(slug)
-  posthog.capture('writing_page_view', {
-    slug,
-  })
 
   if (!post) return <p>Post not found</p>
 
