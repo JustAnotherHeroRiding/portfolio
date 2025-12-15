@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = post?.title ? `${post.title}` : fallbackTitle
   const description = post?.contentHtml.slice(0, 160) + '...' || fallbackDescription
   const canonicalPath = `/writing/${slug}`
+  const imgUrl = '/images/me.png'
 
   return {
     metadataBase: new URL(siteUrl),
