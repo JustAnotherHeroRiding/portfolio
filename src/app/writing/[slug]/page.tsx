@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = post?.title ? `${post.title}` : fallbackTitle
   const description = post?.contentHtml.slice(0, 160) + '...' || fallbackDescription
   const canonicalPath = `/writing/${slug}`
-  const imgUrl = '/images/me.png'
+  const imgUrl = post?.imgUrl || '/images/me.png'
 
   return {
     metadataBase: new URL(siteUrl),
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: fallbackTitle,
       images: [
         {
-          url: '/images/me.png',
+          url: imgUrl,
           width: 800,
           height: 600,
           alt: fallbackTitle,
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/me.png'],
+      images: [imgUrl],
     },
   }
 }
