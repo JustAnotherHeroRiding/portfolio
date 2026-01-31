@@ -71,6 +71,37 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    name: 'OnlyScans',
+    description:
+      'Simple, fast document scanning app with Google Drive integration. Scan documents using your phone camera and automatically backup to your cloud storage.',
+    imageUrl: '/images/onlyscans-logo.png',
+    acquireInfo: [
+      {
+        type: 'website',
+        link: '/onlyscans',
+      },
+    ],
+    stack: [
+      { name: 'React Native', logoUrl: LOGOURLS.REACT_NATIVE, docs: DOCSURLS.REACT_NATIVE },
+      { name: 'TypeScript', logoUrl: LOGOURLS.TYPESCRIPT, docs: DOCSURLS.TYPESCRIPT },
+    ],
+  },
+  {
+    name: 'Pitcher',
+    description:
+      'AI-powered pitch detection app that identifies musical notes and chords in real-time. Perfect for musicians learning songs by ear or tuning their instruments.',
+    imageUrl: '/images/default-logo.png',
+    acquireInfo: [
+      {
+        type: 'contact',
+      },
+    ],
+    stack: [
+      { name: 'React Native', logoUrl: LOGOURLS.REACT_NATIVE, docs: DOCSURLS.REACT_NATIVE },
+      { name: 'TypeScript', logoUrl: LOGOURLS.TYPESCRIPT, docs: DOCSURLS.TYPESCRIPT },
+    ],
+  },
+  {
     name: 'WiseMargin',
     description: 'AI-powered profitability platform that gives you data-driven insights for your e-commerce shops',
     imageComponent: WiseMarginLogo,
