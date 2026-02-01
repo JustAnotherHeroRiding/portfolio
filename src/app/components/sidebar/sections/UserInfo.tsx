@@ -2,7 +2,7 @@ import Engineer from '../../svg/Engineer'
 import Location from '../../svg/Location'
 import Image from 'next/image'
 import Link from 'next/link'
-import meImage from '@/public/images/me.png'
+import meImage from '../../../../../public/images/me.png'
 
 const UserInfo = () => {
 
