@@ -4,6 +4,7 @@ import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import './prism-nord.css'
 import { PostHogProvider } from './providers/PostHogProvider'
+import meImage from '../../public/images/me.png'
 
 export const metadata: Metadata = {
   title: 'Kristijan Kocev',
@@ -13,10 +14,10 @@ export const metadata: Metadata = {
     title: 'Kristijan Kocev',
     description:
       'Explore the portfolio of Kristijan Kocev, a skilled product engineer specializing in React Native and Next.js.',
-    url: 'https://justanotherheroriding.github.io/portfolio/images/me.png',
+    url: meImage.src,
     images: [
       {
-        url: 'https://justanotherheroriding.github.io/portfolio/images/me.png',
+        url: meImage.src,
         width: 800,
         height: 600,
         alt: 'Kristijan Kocev Portfolio',

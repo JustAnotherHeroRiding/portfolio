@@ -2,16 +2,16 @@ import Engineer from '../../svg/Engineer'
 import Location from '../../svg/Location'
 import Image from 'next/image'
 import Link from 'next/link'
+import meImage from '@/public/images/me.png'
 
 const UserInfo = () => {
-  const isProd = process.env.NODE_ENV === 'production'
 
   return (
     <div className='flex flex-col items-center gap-4 justify-center pt-8 pb-4 animate-fade-in'>
       <div className='relative group  justify-center items-center flex'>
         <div className='absolute -inset-1 bg-gradient-to-r from-nord-highlight-2 to-nord-highlight-3 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500'></div>
         <Image
-          src={isProd ? '/portfolio/images/me.png' : '/images/me.png'}
+          src={meImage.src}
           className='relative rounded-full transition-transform duration-300 hover:scale-105'
           width={140}
           height={140}

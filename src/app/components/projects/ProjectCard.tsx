@@ -13,9 +13,7 @@ const ProjectCard = ({
   stack,
   imageComponent,
 }: Omit<Project, 'featured'>) => {
-  const isProd = process.env.NODE_ENV === 'production'
-  const prefix = isProd ? '/portfolio' : ''
-  const fullImageUrl = `${prefix}${imageUrl}`
+  const fullImageUrl = imageUrl
 
   const appButtons = acquireInfo.filter(info => info.type === 'appStore' || info.type === 'playStore')
   const altButtons = acquireInfo.filter(info => info.type === 'contact' || info.type === 'website')

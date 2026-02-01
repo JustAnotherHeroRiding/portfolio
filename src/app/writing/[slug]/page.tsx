@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = (await params) as { slug: string }
   const post = await getWritingContent(slug)
 
-  const siteUrl = 'https://justanotherheroriding.github.io/portfolio'
+  const siteUrl = 'https://justanotherheroriding.cc'
   const fallbackTitle = 'Kristijan Kocev'
   const fallbackDescription = 'Everything you need to know about Kristijan Kocev(me)'
 
