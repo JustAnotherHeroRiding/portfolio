@@ -9,7 +9,7 @@ export const myWritings = [
     imgUrl: '/images/me.png',
   },
   {
-    'id:': '2',
+    id: '2',
     slug: 'good-data',
     title: 'Good Data',
     subtitle: "How we fixed Rate Game's data problem",

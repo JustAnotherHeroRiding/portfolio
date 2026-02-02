@@ -3,6 +3,7 @@ import Location from '../../svg/Location'
 import Image from 'next/image'
 import Link from 'next/link'
 import meImage from '../../../../../public/images/me.png'
+import sixcoreLogo from '../../../../../public/images/sixcore-logo-lightblue.png'
 
 const UserInfo = () => {
 
@@ -38,6 +39,7 @@ const UserInfo = () => {
       >
         <span className='text-sm font-medium text-nord-text-secondary'>Co-founder at</span>
         <span className='text-sm font-bold text-nord-highlight-2'>sixcore.io</span>
+        <Image src={sixcoreLogo} alt='sixcore.io' width={16} height={16} />
         <svg className='w-4 h-4 text-nord-highlight-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
           <path
             strokeLinecap='round'

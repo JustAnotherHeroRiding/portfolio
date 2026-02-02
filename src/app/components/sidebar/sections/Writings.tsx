@@ -2,6 +2,9 @@ import { myWritings } from '@/app/utils/allWritings'
 import Link from 'next/link'
 
 export const Writings = () => {
+
+  const sortedWritings = myWritings.sort((a, b) => parseInt(b.id) - parseInt(a.id))
+
   return (
     <div className='flex flex-col w-full px-4 sm:px-6 lg:px-8 py-6 animate-fade-in'>
       <div className='flex items-center gap-3 mb-6'>
@@ -11,7 +14,7 @@ export const Writings = () => {
       </div>
 
       <div className='grid gap-4 stagger-children'>
-        {myWritings.reverse().map((blog, index) => (
+        {sortedWritings.map((blog, index) => (
           <Link key={blog.slug} href={`/writing/${blog.slug}`} className='group block'>
             <article className='relative p-4 sm:p-5 rounded-xl bg-nord-accent-1 border border-nord-main-border card-hover overflow-hidden'>
               {/* Subtle gradient overlay on hover */}
