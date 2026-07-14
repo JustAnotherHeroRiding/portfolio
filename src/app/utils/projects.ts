@@ -10,6 +10,7 @@ enum LOGOURLS {
   TYPESCRIPT = 'https://cdn.worldvectorlogo.com/logos/typescript.svg',
   SHOPIFY = 'https://cdn.worldvectorlogo.com/logos/shopify.svg',
   POWERSHELL = 'https://upload.wikimedia.org/wikipedia/commons/a/af/PowerShell_Core_6.0_icon.png',
+  SWIFT = 'https://www.swift.org/assets/images/swift.svg',
 }
 
 enum DOCSURLS {
@@ -20,6 +21,7 @@ enum DOCSURLS {
   TYPESCRIPT = 'https://www.typescriptlang.org/docs/',
   SHOPIFY = 'https://shopify.dev/docs',
   POWERSHELL = 'https://learn.microsoft.com/en-us/powershell/',
+  SWIFT = 'https://www.swift.org/documentation/',
 }
 
 export interface AcquireInfo {
@@ -157,5 +159,18 @@ export const projects: Project[] = [
       },
     ],
     stack: [{ name: 'GoLang', logoUrl: LOGOURLS.GOLANG, docs: DOCSURLS.GOLANG }],
+  },
+  {
+    name: 'LidWatch',
+    description: 'Sleep a docked MacBook when its lid closes without polling.',
+    imageUrl: '/images/default-logo.png',
+    acquireInfo: [
+      {
+        type: 'website',
+        link: 'https://github.com/KristijanKocev/lidwatch',
+        logo: Github,
+      },
+    ],
+    stack: [{ name: 'Swift', logoUrl: LOGOURLS.SWIFT, docs: DOCSURLS.SWIFT }],
   },
 ]
