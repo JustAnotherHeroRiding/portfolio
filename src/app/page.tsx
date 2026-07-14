@@ -39,9 +39,7 @@ export default function Home() {
         {/* Other Projects Section */}
         <section className='animate-fade-in animation-delay-200'>
           <div className='flex items-center gap-3 mb-6'>
-            <div className='h-px flex-1 bg-gradient-to-r from-transparent via-nord-main-border to-transparent'></div>
             <h2 className='text-xl font-bold text-nord-text-primary'>Other Projects</h2>
-            <div className='h-px flex-1 bg-gradient-to-r from-transparent via-nord-main-border to-transparent'></div>
           </div>
           <ul className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 stagger-children'>
             {otherProjects.map(project => (
