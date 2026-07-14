@@ -1,6 +1,7 @@
 # How the WebGL grid and portrait distortion work
 
-This page explains the interactive background in [`RippleGrid.tsx`](../src/app/components/RippleGrid.tsx) for someone new to GPU rendering and shaders.
+This page explains the interactive background in [`RippleGrid.tsx`](../src/app/components/RippleGrid.tsx) for someone
+new to GPU rendering and shaders.
 
 ## What is actually GPU-rendered?
 
@@ -11,17 +12,23 @@ The final effect uses **WebGL 2**. JavaScript does not draw the grid or manipula
 3. sends changing values such as cursor position and time to the GPU;
 4. asks the GPU to draw one full-screen triangle.
 
-The fragment shader then computes the color of every visible pixel. During verification, Chrome reported the renderer as `ANGLE Metal Renderer: Apple M4 Pro`, confirming that the shader ran through the Mac's GPU rather than the old Canvas 2D implementation.
+The fragment shader then computes the color of every visible pixel. During verification, Chrome reported the renderer as
+`ANGLE Metal Renderer: Apple M4 Pro`, confirming that the shader ran through the Mac's GPU rather than the old Canvas 2D
+implementation.
 
 ## Files involved
 
-- [`src/app/components/RippleGrid.tsx`](../src/app/components/RippleGrid.tsx) contains the WebGL setup, vertex shader, fragment shader, interaction state, and animation loop.
-- [`src/app/components/sidebar/ParticlePortrait.tsx`](../src/app/components/sidebar/ParticlePortrait.tsx) is a DOM marker that tells the shader where the portrait belongs. Its CSS background is also the fallback if WebGL is unavailable.
+- [`src/app/components/RippleGrid.tsx`](../src/app/components/RippleGrid.tsx) contains the WebGL setup, vertex shader,
+  fragment shader, interaction state, and animation loop.
+- [`src/app/components/sidebar/ParticlePortrait.tsx`](../src/app/components/sidebar/ParticlePortrait.tsx) is a DOM
+  marker that tells the shader where the portrait belongs. Its CSS background is also the fallback if WebGL is
+  unavailable.
 - [`src/app/page.tsx`](../src/app/page.tsx) mounts the fixed shader canvas behind the page content.
 
 ## A beginner's mental model
 
-A normal canvas drawing loop might say, “draw this line, then draw that image.” A fragment shader works in the opposite direction:
+A normal canvas drawing loop might say, “draw this line, then draw that image.” A fragment shader works in the opposite
+direction:
 
 > For the pixel currently being processed, what color should it be?
 
@@ -63,7 +70,8 @@ The vertex buffer contains three points:
 new Float32Array([-1, -1, 3, -1, -1, 3])
 ```
 
-WebGL's screen coordinate range is `-1` to `1`. These oversized coordinates produce one triangle covering the entire viewport. This is a common shader technique: one triangle has less edge overlap than two triangles forming a rectangle.
+WebGL's screen coordinate range is `-1` to `1`. These oversized coordinates produce one triangle covering the entire
+viewport. This is a common shader technique: one triangle has less edge overlap than two triangles forming a rectangle.
 
 The vertex shader simply forwards those positions:
 
@@ -80,7 +88,8 @@ There is no geometry animation. All visual work happens in the fragment shader.
 
 ## 3. Uniforms: JavaScript's inputs to the shader
 
-Shaders cannot read React state, the DOM, or pointer events. **Uniforms** are small values JavaScript sends to every shader invocation:
+Shaders cannot read React state, the DOM, or pointer events. **Uniforms** are small values JavaScript sends to every
+shader invocation:
 
 ```glsl
 uniform vec2 resolution;
@@ -98,16 +107,16 @@ uniform sampler2D portrait;
 
 Think of them as the shader's read-only parameters for the current frame.
 
-| Uniform | Meaning |
-| --- | --- |
-| `resolution` | Physical canvas width and height |
-| `cursor` | Current pointer position |
-| `clickPoint` | Origin of the newest click wave |
-| `portraitOrigin` / `portraitSize` | Portrait marker rectangle from the DOM |
-| `pixelRatio` | Converts CSS pixels to physical pixels |
-| `time` / `clickTime` | Drives motion and wave expansion |
+| Uniform                           | Meaning                                     |
+| --------------------------------- | ------------------------------------------- |
+| `resolution`                      | Physical canvas width and height            |
+| `cursor`                          | Current pointer position                    |
+| `clickPoint`                      | Origin of the newest click wave             |
+| `portraitOrigin` / `portraitSize` | Portrait marker rectangle from the DOM      |
+| `pixelRatio`                      | Converts CSS pixels to physical pixels      |
+| `time` / `clickTime`              | Drives motion and wave expansion            |
 | `hoverStrength` / `clickStrength` | Makes the effect stronger near the portrait |
-| `portrait` | The uploaded portrait image texture |
+| `portrait`                        | The uploaded portrait image texture         |
 
 The JavaScript animation loop updates these values and issues one draw call:
 
@@ -117,7 +126,8 @@ gl.drawArrays(gl.TRIANGLES, 0, 3)
 
 ## 4. Converting the current pixel to page coordinates
 
-Inside the fragment shader, `gl_FragCoord` identifies the current physical pixel. WebGL's vertical origin is at the bottom, while browser pointer coordinates start at the top, so the shader flips Y:
+Inside the fragment shader, `gl_FragCoord` identifies the current physical pixel. WebGL's vertical origin is at the
+bottom, while browser pointer coordinates start at the top, so the shader flips Y:
 
 ```glsl
 vec2 point = vec2(gl_FragCoord.x, resolution.y - gl_FragCoord.y);
@@ -145,7 +155,8 @@ float hoverWave = sin(cursorDistance / 15.0 - time * 5.0)
   * hoverStrength;
 ```
 
-The sine alternates between positive and negative values, pushing coordinates outward and inward. Subtracting time makes its rings move.
+The sine alternates between positive and negative values, pushing coordinates outward and inward. Subtracting time makes
+its rings move.
 
 The click wave uses an expanding ring:
 
@@ -153,7 +164,8 @@ The click wave uses an expanding ring:
 float ringDistance = clickDistance - clickTime * 430.0;
 ```
 
-`clickTime * 430` is the ring radius. As time increases, the radius grows by roughly 430 CSS pixels per second. Pixels near that radius receive the largest displacement; pixels far from it are reduced by the exponential falloff.
+`clickTime * 430` is the ring radius. As time increases, the radius grows by roughly 430 CSS pixels per second. Pixels
+near that radius receive the largest displacement; pixels far from it are reduced by the exponential falloff.
 
 Both effects become one offset:
 
@@ -176,7 +188,8 @@ vec2 gridCell = mod(warpedPoint, gridSize);
 vec2 lineDistance = min(gridCell, gridSize - gridCell);
 ```
 
-`mod` tells us where the pixel falls inside its current 40-pixel cell. A pixel close to either cell edge belongs to a grid line.
+`mod` tells us where the pixel falls inside its current 40-pixel cell. A pixel close to either cell edge belongs to a
+grid line.
 
 The shader evaluates the grid using the **warped** coordinate:
 
@@ -199,7 +212,8 @@ The shader converts the current screen pixel into a `0..1` coordinate inside the
 vec2 portraitUv = (point - portraitOrigin) / portraitSize;
 ```
 
-These normalized coordinates are called **UV coordinates**. `(0, 0)` is one corner of the texture and `(1, 1)` is the opposite corner.
+These normalized coordinates are called **UV coordinates**. `(0, 0)` is one corner of the texture and `(1, 1)` is the
+opposite corner.
 
 A circular mask decides whether the current pixel belongs to the portrait:
 
@@ -211,7 +225,8 @@ float portraitMask = 1.0 - smoothstep(
 );
 ```
 
-The narrow `smoothstep` range softens the circle edge. Inside the circle, the wave offset changes which texture coordinate gets sampled:
+The narrow `smoothstep` range softens the circle edge. Inside the circle, the wave offset changes which texture
+coordinate gets sampled:
 
 ```glsl
 vec2 distortedUv = clamp(
@@ -222,11 +237,13 @@ vec2 distortedUv = clamp(
 vec3 portraitColor = texture(portrait, distortedUv).rgb;
 ```
 
-This preserves the original image resolution. Unlike the old tiled Canvas approach, the GPU samples the continuous texture instead of moving visible image blocks.
+This preserves the original image resolution. Unlike the old tiled Canvas approach, the GPU samples the continuous
+texture instead of moving visible image blocks.
 
 ## 8. Making the effect stronger near the portrait
 
-JavaScript measures the pointer's distance from the nearest edge of the portrait marker. That distance becomes a `0..1` proximity value over 700 pixels.
+JavaScript measures the pointer's distance from the nearest edge of the portrait marker. That distance becomes a `0..1`
+proximity value over 700 pixels.
 
 The grid always keeps a minimum effect:
 
@@ -243,11 +260,15 @@ Consequences:
 
 ## 9. React and DOM responsibilities
 
-The WebGL canvas is `fixed`, fills the viewport, and has `pointer-events: none`. Normal links and cards therefore remain interactive.
+The WebGL canvas is `fixed`, fills the viewport, and has `pointer-events: none`. Normal links and cards therefore remain
+interactive.
 
-The page content uses a higher Z index, so HTML remains above the shader. The portrait is different: its DOM element is only a position marker and fallback. After the GPU texture is ready, the WebGL component removes the marker's CSS background so the shader-rendered portrait becomes visible.
+The page content uses a higher Z index, so HTML remains above the shader. The portrait is different: its DOM element is
+only a position marker and fallback. After the GPU texture is ready, the WebGL component removes the marker's CSS
+background so the shader-rendered portrait becomes visible.
 
-On scroll and resize, JavaScript reads the marker's new bounding rectangle and updates its uniforms. This keeps the GPU portrait aligned with the layout without making the shader aware of the DOM.
+On scroll and resize, JavaScript reads the marker's new bounding rectangle and updates its uniforms. This keeps the GPU
+portrait aligned with the layout without making the shader aware of the DOM.
 
 ## 10. Rendering only while needed
 
@@ -256,26 +277,28 @@ On scroll and resize, JavaScript reads the marker's new bounding rectangle and u
 - the pointer wave is fading, for 1.4 seconds after movement; or
 - a click wave is expanding, for 3 seconds.
 
-At rest, the last frame remains on screen and no new frames are requested. This avoids running a full-screen shader continuously when nothing is changing.
+At rest, the last frame remains on screen and no new frames are requested. This avoids running a full-screen shader
+continuously when nothing is changing.
 
-The device pixel ratio is capped at `2`. A higher value would greatly increase the number of fragments the GPU processes without a useful visual improvement on this background.
+The device pixel ratio is capped at `2`. A higher value would greatly increase the number of fragments the GPU processes
+without a useful visual improvement on this background.
 
 ## Tuning reference
 
 The easiest way to experiment is to change one constant at a time in the fragment shader.
 
-| Value | Current setting | Visible effect |
-| --- | ---: | --- |
-| Grid spacing | `40` | Distance between grid lines |
-| Hover wavelength | `15` | Smaller values create tighter ripples |
-| Hover animation speed | `5` | Larger values move hover waves faster |
-| Hover falloff | `320` | Larger values spread hover distortion farther |
-| Hover displacement | `10` | Maximum grid movement from hover |
-| Click ring speed | `430` | Expansion speed in CSS pixels per second |
-| Click wavelength | `10` | Spacing inside the click ring |
-| Click ring width | `70` | Thickness of the visible click wave |
-| Click displacement | `18` | Maximum grid movement from clicks |
-| Portrait multiplier | `1.8` | How much more the portrait texture bends |
+| Value                 | Current setting | Visible effect                                |
+| --------------------- | --------------: | --------------------------------------------- |
+| Grid spacing          |            `40` | Distance between grid lines                   |
+| Hover wavelength      |            `15` | Smaller values create tighter ripples         |
+| Hover animation speed |             `5` | Larger values move hover waves faster         |
+| Hover falloff         |           `320` | Larger values spread hover distortion farther |
+| Hover displacement    |            `10` | Maximum grid movement from hover              |
+| Click ring speed      |           `430` | Expansion speed in CSS pixels per second      |
+| Click wavelength      |            `10` | Spacing inside the click ring                 |
+| Click ring width      |            `70` | Thickness of the visible click wave           |
+| Click displacement    |            `18` | Maximum grid movement from clicks             |
+| Portrait multiplier   |           `1.8` | How much more the portrait texture bends      |
 
 ## How to verify that the shader is really running
 
@@ -304,10 +327,15 @@ The automated verification for this implementation confirmed:
 
 ## Common failure modes
 
-- **The static fallback remains visible:** the image texture may not have loaded or the shader failed to compile. Check the console for the shader compile log.
-- **The portrait is misplaced after scrolling:** confirm the scroll listener updates `portraitOrigin` and `portraitSize`.
-- **The image is upside down:** texture upload and screen coordinates disagree about the vertical origin. Flip the texture during upload or invert `portraitUv.y`, but not both.
-- **The center produces broken pixels:** normalizing a zero-length direction divides by zero. The shader guards with `max(length(...), 0.001)`.
+- **The static fallback remains visible:** the image texture may not have loaded or the shader failed to compile. Check
+  the console for the shader compile log.
+- **The portrait is misplaced after scrolling:** confirm the scroll listener updates `portraitOrigin` and
+  `portraitSize`.
+- **The image is upside down:** texture upload and screen coordinates disagree about the vertical origin. Flip the
+  texture during upload or invert `portraitUv.y`, but not both.
+- **The center produces broken pixels:** normalizing a zero-length direction divides by zero. The shader guards with
+  `max(length(...), 0.001)`.
 - **High-resolution screens run slowly:** lower the device-pixel-ratio cap before simplifying the effect itself.
 
-The key idea is small: JavaScript describes the interaction, while one fragment shader turns coordinates into a warped grid and portrait. Everything visible in the animated layer is produced by that shader.
+The key idea is small: JavaScript describes the interaction, while one fragment shader turns coordinates into a warped
+grid and portrait. Everything visible in the animated layer is produced by that shader.

@@ -57,7 +57,7 @@ const fragmentShaderSource = `#version 300 es
     vec2 lineDistance = min(gridCell, gridSize - gridCell);
     float gridLine = 1.0 - smoothstep(0.7 * pixelRatio, 1.4 * pixelRatio, min(lineDistance.x, lineDistance.y));
     vec3 background = vec3(0.180, 0.204, 0.251);
-    vec3 grid = vec3(0.298, 0.337, 0.416);
+    vec3 grid = vec3(0.23137, 0.25882, 0.32157);
     vec3 color = mix(background, grid, gridLine);
 
     vec2 portraitUv = (point - portraitOrigin) / portraitSize;
