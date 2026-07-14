@@ -44,7 +44,7 @@ const FeaturedProjectCard = ({ name, description, imageUrl, acquireInfo, stack }
       {/* Animated gradient border */}
       <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-nord-highlight-2 via-nord-highlight-3 to-nord-highlight-2 opacity-0 group-hover:opacity-20 transition-opacity duration-500'></div>
 
-      <div className='relative rounded-xl bg-nord-surface p-6 sm:p-8 [transform:translateZ(12px)] [transform-style:preserve-3d]'>
+      <div className='relative rounded-xl bg-nord-surface p-6 sm:p-8 [transform-style:preserve-3d]'>
         <div
           className='pointer-events-none absolute inset-0 z-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100'
           style={{
@@ -54,7 +54,7 @@ const FeaturedProjectCard = ({ name, description, imageUrl, acquireInfo, stack }
         />
 
         {/* Currently working on badge */}
-        <div className='relative z-10 lg:absolute lg:top-4 lg:right-4 ml-auto mb-4 lg:mb-0 w-fit flex items-center gap-2 px-3 py-1.5 rounded-full bg-nord-success/20 border border-nord-success/30 [transform:translateZ(28px)]'>
+        <div className='relative z-10 lg:absolute lg:top-4 lg:right-6 ml-auto mb-4 lg:mb-0 w-fit flex items-center gap-2 px-3 py-1.5 rounded-full bg-nord-success/20 border border-nord-success/30 [transform:translateZ(28px)]'>
           <span className='text-xs font-medium text-nord-success'>Currently Working On</span>
         </div>
 
