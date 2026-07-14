@@ -2,8 +2,8 @@ import Engineer from '../../svg/Engineer'
 import Location from '../../svg/Location'
 import Image from 'next/image'
 import Link from 'next/link'
-import meImage from '../../../../../public/images/me.png'
 import sixcoreLogo from '../../../../../public/images/sixcore-logo-lightblue.png'
+import ParticlePortrait from '../ParticlePortrait'
 
 const UserInfo = () => {
 
@@ -11,13 +11,7 @@ const UserInfo = () => {
     <div className='flex flex-col items-center gap-4 justify-center pt-8 pb-4 animate-fade-in'>
       <div className='relative group  justify-center items-center flex'>
         <div className='absolute -inset-1 bg-gradient-to-r from-nord-highlight-2 to-nord-highlight-3 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500'></div>
-        <Image
-          src={meImage.src}
-          className='relative rounded-full transition-transform duration-300 hover:scale-105'
-          width={140}
-          height={140}
-          alt='Kristijan Kocev'
-        />
+        <ParticlePortrait />
       </div>
       <span className='text-2xl font-bold animate-slide-up'>Kristijan Kocev</span>
       <div className='flex flex-col sm:flex-row gap-3 justify-center items-center animate-slide-up animation-delay-100'>
