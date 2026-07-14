@@ -90,7 +90,7 @@ const FeaturedProjectCard = ({ name, description, imageUrl, acquireInfo, stack }
                   href={s.docs}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='flex items-center gap-2 px-3 py-1.5 bg-nord-accent-1 border border-nord-main-border rounded-lg hover:border-nord-highlight-2 transition-colors duration-200'
+                  className='flex items-center gap-2 px-3 py-1.5 bg-nord-accent-1 border border-nord-main-border rounded-full hover:border-nord-highlight-2 transition-colors duration-200'
                   title={s.name}
                 >
                   <img src={s.logoUrl} width={20} height={20} alt={`${s.name} Logo`} className='rounded' />

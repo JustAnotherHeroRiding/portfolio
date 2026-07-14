@@ -1,5 +1,4 @@
 import Sidebar from './components/sidebar/Sidebar'
-import ProjectCard from './components/projects/ProjectCard'
 import FeaturedProjectCard from './components/projects/FeaturedProjectCard'
 import ProjectCabinet from './components/projects/ProjectCabinet'
 import RippleGrid from './components/RippleGrid'
@@ -8,9 +7,6 @@ import { projects } from './utils/projects'
 export default function Home() {
   const featuredProject = projects.find(p => p.featured)
   const otherProjects = projects.filter(p => !p.featured)
-  const cabinetProjectNames = new Set(['OnlyScans', 'Pitcher', 'What The Key'])
-  const cabinetProjects = otherProjects.filter(project => cabinetProjectNames.has(project.name))
-  const remainingProjects = otherProjects.filter(project => !cabinetProjectNames.has(project.name))
   return (
     <div className='relative isolate mx-auto flex min-h-screen max-w-[1800px] select-none flex-col lg:flex-row'>
       <RippleGrid />
@@ -45,22 +41,14 @@ export default function Home() {
           <div className='flex items-center gap-3 mb-6'>
             <h2 className='text-xl font-bold text-nord-text-primary'>Other Projects</h2>
           </div>
-          <ProjectCabinet projects={cabinetProjects} />
-
-          <h3 className='mb-4 mt-10 text-lg font-bold text-nord-text-primary'>More Projects</h3>
-          <ul className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 stagger-children'>
-            {remainingProjects.map(project => (
-              <ProjectCard
-                key={project.name}
-                name={project.name}
-                description={project.description}
-                imageUrl={project.imageUrl}
-                acquireInfo={project.acquireInfo}
-                stack={project.stack}
-                imageComponent={project.imageComponent}
-              />
-            ))}
-          </ul>
+          <ProjectCabinet
+            projects={otherProjects.map(({ name, description, acquireInfo, stack }) => ({
+              name,
+              description,
+              acquireInfo: acquireInfo.map(({ type, link }) => ({ type, link })),
+              stack,
+            }))}
+          />
         </section>
       </main>
     </div>
