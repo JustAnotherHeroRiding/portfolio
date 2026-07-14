@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import type { CSSProperties, PointerEvent } from 'react'
 import { AcquireInfo, Project } from '@/app/utils/projects'
 import AppStore from '../svg/AppStore'
 import GooglePlay from '../svg/GooglePlay'
@@ -10,21 +13,55 @@ const FeaturedProjectCard = ({ name, description, imageUrl, acquireInfo, stack }
   const appButtons = acquireInfo.filter(info => info.type === 'appStore' || info.type === 'playStore')
   const websiteButton = acquireInfo.find(info => info.type === 'website')
 
-  return (
-    <div className='group relative overflow-hidden rounded-2xl bg-gradient-to-br from-nord-accent-1 via-nord-accent-2 to-nord-accent-1 border border-nord-highlight-2/30 p-1'>
-      {/* Animated gradient border */}
-      <div className='absolute inset-0 bg-gradient-to-r from-nord-highlight-2 via-nord-highlight-3 to-nord-highlight-2 opacity-0 group-hover:opacity-20 transition-opacity duration-500'></div>
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'touch') return
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - bounds.left) / bounds.width
+    const y = (event.clientY - bounds.top) / bounds.height
+    event.currentTarget.style.setProperty('--pointer-x', `${x * 100}%`)
+    event.currentTarget.style.setProperty('--pointer-y', `${y * 100}%`)
+    event.currentTarget.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 6}deg) rotateY(${(x - 0.5) * 6}deg) translateY(-2px)`
+  }
 
-      <div className='relative rounded-xl bg-nord-surface p-6 sm:p-8'>
+  const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)'
+  }
+
+  return (
+    <div
+      className='group relative rounded-2xl bg-gradient-to-br from-nord-accent-1 via-nord-accent-2 to-nord-accent-1 border border-nord-highlight-2/30 p-1 transition-transform duration-200 ease-out will-change-transform'
+      style={
+        {
+          '--pointer-x': '50%',
+          '--pointer-y': '50%',
+          transform: 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)',
+          transformStyle: 'preserve-3d',
+        } as CSSProperties
+      }
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+    >
+      {/* Animated gradient border */}
+      <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-nord-highlight-2 via-nord-highlight-3 to-nord-highlight-2 opacity-0 group-hover:opacity-20 transition-opacity duration-500'></div>
+
+      <div className='relative rounded-xl bg-nord-surface p-6 sm:p-8 [transform:translateZ(12px)] [transform-style:preserve-3d]'>
+        <div
+          className='pointer-events-none absolute inset-0 z-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100'
+          style={{
+            background:
+              'radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(136, 192, 208, 0.18), transparent 42%)',
+          }}
+        />
+
         {/* Currently working on badge */}
-        <div className='relative lg:absolute lg:top-4 lg:right-4 ml-auto mb-4 lg:mb-0 w-fit flex items-center gap-2 px-3 py-1.5 rounded-full bg-nord-success/20 border border-nord-success/30'>
+        <div className='relative z-10 lg:absolute lg:top-4 lg:right-4 ml-auto mb-4 lg:mb-0 w-fit flex items-center gap-2 px-3 py-1.5 rounded-full bg-nord-success/20 border border-nord-success/30 [transform:translateZ(28px)]'>
           <span className='text-xs font-medium text-nord-success'>Currently Working On</span>
         </div>
 
-        <div className='flex flex-col lg:flex-row gap-6 lg:gap-8'>
+        <div className='relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-8'>
           {/* Logo Section */}
           <div className='flex-shrink-0 flex justify-center lg:justify-start'>
-            <div className='relative h-fit'>
+            <div className='relative h-fit [transform:translateZ(30px)]'>
               <div className='absolute -inset-2 bg-gradient-to-r from-nord-highlight-2 to-nord-highlight-3 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500'></div>
               <Image
                 src={fullImageUrl}
@@ -37,7 +74,7 @@ const FeaturedProjectCard = ({ name, description, imageUrl, acquireInfo, stack }
           </div>
 
           {/* Content Section */}
-          <div className='flex-1 flex flex-col gap-4'>
+          <div className='flex-1 flex flex-col gap-4 [transform:translateZ(20px)]'>
             <div>
               <h3 className='text-2xl sm:text-3xl font-bold text-nord-text-primary group-hover:text-nord-highlight-2 transition-colors duration-300'>
                 {name}
