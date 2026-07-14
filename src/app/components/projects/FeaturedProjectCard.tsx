@@ -18,10 +18,6 @@ const FeaturedProjectCard = ({ name, description, imageUrl, acquireInfo, stack }
       <div className='relative rounded-xl bg-nord-surface p-6 sm:p-8'>
         {/* Currently working on badge */}
         <div className='relative lg:absolute lg:top-4 lg:right-4 ml-auto mb-4 lg:mb-0 w-fit flex items-center gap-2 px-3 py-1.5 rounded-full bg-nord-success/20 border border-nord-success/30'>
-          <span className='relative flex h-2 w-2'>
-            <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-nord-success opacity-75'></span>
-            <span className='relative inline-flex rounded-full h-2 w-2 bg-nord-success'></span>
-          </span>
           <span className='text-xs font-medium text-nord-success'>Currently Working On</span>
         </div>
 
