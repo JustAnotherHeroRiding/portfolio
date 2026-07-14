@@ -10,7 +10,6 @@ const UserInfo = () => {
   return (
     <div className='flex flex-col items-center gap-4 justify-center pt-8 pb-4 animate-fade-in'>
       <div className='relative group  justify-center items-center flex'>
-        <div className='absolute -inset-1 bg-gradient-to-r from-nord-highlight-2 to-nord-highlight-3 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500'></div>
         <ParticlePortrait />
       </div>
       <span className='text-2xl font-bold animate-slide-up'>Kristijan Kocev</span>
