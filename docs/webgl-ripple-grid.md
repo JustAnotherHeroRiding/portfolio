@@ -171,8 +171,8 @@ Both effects become one offset:
 
 ```glsl
 return (
-  hoverDirection * hoverWave * 10.0
-  + clickDirection * clickWave * 18.0
+  hoverDirection * hoverWave * 7.0
+  + clickDirection * clickWave * 12.0
 ) * pixelRatio;
 ```
 
@@ -200,7 +200,7 @@ vec2 warpedPoint = point + offset;
 That single change is why the lines bend around the pointer and waves. The shader mixes two Nord colors for the result:
 
 - background: `#2E3440`;
-- grid line: `#4C566A`.
+- grid line: `#3B4252`.
 
 ## 7. Rendering and distorting the portrait
 
@@ -230,7 +230,7 @@ coordinate gets sampled:
 
 ```glsl
 vec2 distortedUv = clamp(
-  portraitUv + offset * 1.8 / portraitSize,
+  portraitUv + offset * 1.2 / portraitSize,
   0.0,
   1.0
 );
@@ -248,15 +248,18 @@ proximity value over 700 pixels.
 The grid always keeps a minimum effect:
 
 ```ts
-hoverStrength = 0.15 + proximity ** 3 * 0.85
-clickStrength = 0.4 + proximity ** 3 * 0.6
+hoverStrength = 0.15 + proximity ** 3 * 0.45
+clickStrength = 0.4 + proximity ** 3 * 0.25
 ```
 
 Consequences:
 
 - far from the portrait, hover strength is still `0.15` and click strength is still `0.4`;
-- near the portrait, both approach `1`;
+- near the portrait, hover reaches `0.6` and click reaches `0.65`;
 - cubing proximity keeps the strong region concentrated near the portrait instead of affecting most of the page equally.
+
+Hover strength is also multiplied by a smooth 500 ms ramp. A new movement after the effect has gone idle starts at zero,
+then uses `t * t * (3 - 2 * t)` to ease to full strength without snapping on.
 
 ## 9. React and DOM responsibilities
 
@@ -293,12 +296,13 @@ The easiest way to experiment is to change one constant at a time in the fragmen
 | Hover wavelength      |            `15` | Smaller values create tighter ripples         |
 | Hover animation speed |             `5` | Larger values move hover waves faster         |
 | Hover falloff         |           `320` | Larger values spread hover distortion farther |
-| Hover displacement    |            `10` | Maximum grid movement from hover              |
+| Hover displacement    |             `7` | Maximum grid movement from hover              |
+| Hover ramp            |        `500 ms` | Time to smoothly reach full hover strength    |
 | Click ring speed      |           `430` | Expansion speed in CSS pixels per second      |
 | Click wavelength      |            `10` | Spacing inside the click ring                 |
 | Click ring width      |            `70` | Thickness of the visible click wave           |
-| Click displacement    |            `18` | Maximum grid movement from clicks             |
-| Portrait multiplier   |           `1.8` | How much more the portrait texture bends      |
+| Click displacement    |            `12` | Maximum grid movement from clicks             |
+| Portrait multiplier   |           `1.2` | How much more the portrait texture bends      |
 
 ## How to verify that the shader is really running
 

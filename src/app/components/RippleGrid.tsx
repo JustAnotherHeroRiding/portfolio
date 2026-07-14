@@ -45,7 +45,7 @@ const fragmentShaderSource = `#version 300 es
 
     vec2 hoverDirection = cursorDelta / max(length(cursorDelta), 0.001);
     vec2 clickDirection = clickDelta / max(length(clickDelta), 0.001);
-    return (hoverDirection * hoverWave * 10.0 + clickDirection * clickWave * 18.0) * pixelRatio;
+    return (hoverDirection * hoverWave * 7.0 + clickDirection * clickWave * 12.0) * pixelRatio;
   }
 
   void main() {
@@ -63,7 +63,7 @@ const fragmentShaderSource = `#version 300 es
     vec2 portraitUv = (point - portraitOrigin) / portraitSize;
     float portraitMask = 1.0 - smoothstep(0.492, 0.505, length(portraitUv - 0.5));
     if (portraitMask > 0.0) {
-      vec2 distortedUv = clamp(portraitUv + offset * 1.8 / portraitSize, 0.0, 1.0);
+      vec2 distortedUv = clamp(portraitUv + offset * 1.2 / portraitSize, 0.0, 1.0);
       vec3 portraitColor = texture(portrait, distortedUv).rgb;
       color = mix(color, portraitColor, portraitMask);
     }
@@ -133,6 +133,7 @@ const RippleGrid = () => {
     const portraitBounds = { left: 0, top: 0, right: 0, bottom: 0, width: 1, height: 1 }
     const startedAt = performance.now()
     let movedAt = startedAt - 10000
+    let hoverStartedAt = startedAt
     let clickedAt = startedAt - 10000
     let hoverStrength = 0
     let clickStrength = 0
@@ -159,6 +160,8 @@ const RippleGrid = () => {
       if (!ready) return
 
       const hoverFade = Math.max(0, 1 - (now - movedAt) / 1400)
+      const hoverRamp = Math.min(1, (now - hoverStartedAt) / 500)
+      const easedHoverRamp = hoverRamp * hoverRamp * (3 - 2 * hoverRamp)
       const clickTime = (now - clickedAt) / 1000
       gl.uniform2f(uniforms.resolution, canvas.width, canvas.height)
       gl.uniform2f(uniforms.cursor, cursor.x * pixelRatio, cursor.y * pixelRatio)
@@ -168,7 +171,7 @@ const RippleGrid = () => {
       gl.uniform1f(uniforms.pixelRatio, pixelRatio)
       gl.uniform1f(uniforms.time, (now - startedAt) / 1000)
       gl.uniform1f(uniforms.clickTime, clickTime)
-      gl.uniform1f(uniforms.hoverStrength, hoverStrength * hoverFade)
+      gl.uniform1f(uniforms.hoverStrength, hoverStrength * hoverFade * easedHoverRamp)
       gl.uniform1f(uniforms.clickStrength, clickStrength)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
 
@@ -195,8 +198,10 @@ const RippleGrid = () => {
       cursor.x = event.clientX
       cursor.y = event.clientY
       const proximity = proximityToPortrait(event)
-      hoverStrength = 0.15 + proximity * proximity * proximity * 0.85
-      movedAt = performance.now()
+      hoverStrength = 0.15 + proximity * proximity * proximity * 0.45
+      const now = performance.now()
+      if (now - movedAt >= 1400) hoverStartedAt = now
+      movedAt = now
       return proximity
     }
     const handlePointerMove = (event: PointerEvent) => {
@@ -207,7 +212,7 @@ const RippleGrid = () => {
       const proximity = updatePointer(event)
       clickPoint.x = cursor.x
       clickPoint.y = cursor.y
-      clickStrength = 0.4 + proximity * proximity * proximity * 0.6
+      clickStrength = 0.4 + proximity * proximity * proximity * 0.25
       clickedAt = performance.now()
       start()
     }
