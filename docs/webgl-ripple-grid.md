@@ -3,6 +3,9 @@
 This page explains the interactive background in [`RippleGrid.tsx`](../src/app/components/RippleGrid.tsx) for someone
 new to GPU rendering and shaders.
 
+The separate [`React Three Fiber cabinet guide`](./react-three-fiber-cabinet.md) explains how the 3D project objects use
+Fiber, Drei, Three.js, generated shaders, and a second WebGL context.
+
 ## What is actually GPU-rendered?
 
 The final effect uses **WebGL 2**. JavaScript does not draw the grid or manipulate portrait pixels. It only:
