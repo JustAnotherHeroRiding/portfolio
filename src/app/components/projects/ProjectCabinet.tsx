@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useThree } from '@react-three/fiber'
-import { ContactShadows, Environment, Lightformer, RoundedBox } from '@react-three/drei'
+import { ContactShadows } from '@react-three/drei'
 import { PointerEvent, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { AcquireInfo, Project } from '@/app/utils/projects'
@@ -27,39 +27,47 @@ const ResponsiveCamera = () => {
 
 const ArchitecturalCabinet = () => (
   <group position={[0, 0.05, 0]}>
-    <RoundedBox args={[8.8, 4.65, 0.28]} radius={0.18} smoothness={6} position={[0, 0.42, -2.28]} receiveShadow>
-      <meshStandardMaterial color='#3b4252' roughness={0.66} />
-    </RoundedBox>
+    <mesh position={[0, 0.42, -2.28]} receiveShadow>
+      <boxGeometry args={[8.8, 4.65, 0.22]} />
+      <meshStandardMaterial color='#3b4252' roughness={0.9} />
+    </mesh>
 
-    <RoundedBox args={[8.95, 0.42, 0.9]} radius={0.16} smoothness={6} position={[0, 2.58, -1.85]} castShadow>
-      <meshStandardMaterial color='#d8dee9' roughness={0.5} />
-    </RoundedBox>
-    <RoundedBox args={[0.42, 4.45, 0.9]} radius={0.16} smoothness={6} position={[-4.27, 0.42, -1.85]} castShadow>
-      <meshStandardMaterial color='#d8dee9' roughness={0.5} />
-    </RoundedBox>
-    <RoundedBox args={[0.42, 4.45, 0.9]} radius={0.16} smoothness={6} position={[4.27, 0.42, -1.85]} castShadow>
-      <meshStandardMaterial color='#d8dee9' roughness={0.5} />
-    </RoundedBox>
+    {[
+      [0, 2.58, -1.86, 8.95, 0.34, 0.72],
+      [-4.3, 0.42, -1.86, 0.34, 4.66, 0.72],
+      [4.3, 0.42, -1.86, 0.34, 4.66, 0.72],
+    ].map(([x, y, z, width, height, depth]) => (
+      <mesh key={`${x}-${y}`} position={[x, y, z]} castShadow>
+        <boxGeometry args={[width, height, depth]} />
+        <meshStandardMaterial color='#d8dee9' roughness={0.82} />
+      </mesh>
+    ))}
 
-    <RoundedBox args={[9.05, 0.5, 3.35]} radius={0.2} smoothness={6} position={[0, -1.5, -0.45]} castShadow receiveShadow>
-      <meshStandardMaterial color='#d8dee9' roughness={0.46} />
-    </RoundedBox>
-    <RoundedBox args={[8.55, 0.18, 2.92]} radius={0.09} smoothness={5} position={[0, -1.19, -0.38]} receiveShadow>
-      <meshStandardMaterial color='#4c566a' roughness={0.5} />
-    </RoundedBox>
-    <RoundedBox args={[6.1, 0.11, 0.07]} radius={0.045} smoothness={4} position={[0.72, -1.33, 1.25]}>
-      <meshStandardMaterial color='#88c0d0' emissive='#88c0d0' emissiveIntensity={0.18} />
-    </RoundedBox>
+    <mesh position={[0, -1.5, -0.45]} castShadow receiveShadow>
+      <boxGeometry args={[9.05, 0.44, 3.35]} />
+      <meshStandardMaterial color='#d8dee9' roughness={0.84} />
+    </mesh>
+    <mesh position={[0, -1.2, -0.38]} receiveShadow>
+      <boxGeometry args={[8.55, 0.14, 2.92]} />
+      <meshStandardMaterial color='#4c566a' roughness={0.88} />
+    </mesh>
+    <mesh position={[0.72, -1.31, 1.25]}>
+      <boxGeometry args={[6.1, 0.07, 0.05]} />
+      <meshStandardMaterial color='#88c0d0' roughness={0.72} />
+    </mesh>
 
-    <RoundedBox args={[0.24, 3.1, 0.16]} radius={0.1} smoothness={5} position={[-3.22, 0.25, -2.06]}>
-      <meshStandardMaterial color='#eceff4' roughness={0.55} />
-    </RoundedBox>
-    <RoundedBox args={[1.55, 0.18, 0.18]} radius={0.08} smoothness={5} position={[3.05, 1.75, -2.04]}>
-      <meshStandardMaterial color='#ebcb8b' roughness={0.48} />
-    </RoundedBox>
-    <RoundedBox args={[0.18, 0.86, 0.18]} radius={0.08} smoothness={5} position={[3.72, 1.4, -2.04]}>
-      <meshStandardMaterial color='#ebcb8b' roughness={0.48} />
-    </RoundedBox>
+    <mesh position={[-3.22, 0.25, -2.06]}>
+      <boxGeometry args={[0.18, 3.1, 0.12]} />
+      <meshStandardMaterial color='#eceff4' roughness={0.9} />
+    </mesh>
+    <mesh position={[3.05, 1.75, -2.04]}>
+      <boxGeometry args={[1.55, 0.14, 0.14]} />
+      <meshStandardMaterial color='#ebcb8b' roughness={0.86} />
+    </mesh>
+    <mesh position={[3.75, 1.4, -2.04]}>
+      <boxGeometry args={[0.14, 0.84, 0.14]} />
+      <meshStandardMaterial color='#ebcb8b' roughness={0.86} />
+    </mesh>
   </group>
 )
 
@@ -76,28 +84,25 @@ const CabinetScene = ({
 }) => (
   <>
     <ResponsiveCamera />
-    <ambientLight intensity={1.1} />
-    <hemisphereLight color='#eceff4' groundColor='#2e3440' intensity={1.7} />
-    <directionalLight color='#eceff4' intensity={3.2} position={[3.5, 6, 5]} castShadow />
-    <spotLight color='#88c0d0' intensity={28} angle={0.42} penumbra={0.8} position={[-4, 3, 4]} />
-    <Environment resolution={64}>
-      <Lightformer form='rect' intensity={2.5} color='#eceff4' position={[0, 4, 5]} scale={[8, 2, 1]} />
-      <Lightformer form='rect' intensity={1.5} color='#88c0d0' position={[-5, 1, 2]} scale={[2, 5, 1]} />
-    </Environment>
+    <ambientLight intensity={1.6} />
+    <hemisphereLight color='#eceff4' groundColor='#2e3440' intensity={1.2} />
+    <directionalLight color='#eceff4' intensity={2.5} position={[3.5, 6, 5]} castShadow />
 
     <ArchitecturalCabinet />
-    {projects.map((project, index) => (
-      <ArtifactSlot
-        key={project.name}
-        name={project.name}
-        index={index}
-        count={projects.length}
-        activeIndex={activeIndex}
-        dragOffset={dragOffset}
-        onSelect={onSelect}
-      />
-    ))}
-    <ContactShadows position={[0, -1.16, 0]} opacity={0.48} scale={8} blur={2.6} far={4.5} color='#1d222c' />
+    {projects.map((project, index) =>
+      index === activeIndex || index === wrap(activeIndex - 1, projects.length) || index === wrap(activeIndex + 1, projects.length) ? (
+        <ArtifactSlot
+          key={project.name}
+          name={project.name}
+          index={index}
+          count={projects.length}
+          activeIndex={activeIndex}
+          dragOffset={dragOffset}
+          onSelect={onSelect}
+        />
+      ) : null,
+    )}
+    <ContactShadows position={[0, -1.16, 0]} opacity={0.38} scale={8} blur={1.8} far={4.5} color='#1d222c' />
   </>
 )
 
@@ -156,7 +161,7 @@ const ProjectCabinet = ({ projects }: { projects: CabinetProject[] }) => {
         onPointerCancel={handlePointerUp}
       >
         <Canvas
-          shadows
+          shadows='percentage'
           dpr={[1, 1.75]}
           camera={{ fov: 36, near: 0.1, far: 50, position: [0, 1.25, 9.2] }}
           gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' }}
