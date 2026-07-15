@@ -7,6 +7,7 @@ import { PostHogProvider } from './providers/PostHogProvider'
 import meImage from '../../public/images/me.png'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://justanotherheroriding.cc'),
   title: 'Kristijan Kocev',
   description: 'Everything you need to know about Kristijan Kocev(me)',
   keywords: 'Kristijan Kocev, product engineer, portfolio, developer, web development, React Native, Next.js',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Kristijan Kocev',
     description:
       'Explore the portfolio of Kristijan Kocev, a skilled product engineer specializing in React Native and Next.js.',
-    url: meImage.src,
+    url: '/',
     images: [
       {
         url: meImage.src,
